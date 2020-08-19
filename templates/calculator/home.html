@@ -1,0 +1,60 @@
+{% extends 'calculator/base.html' %}
+{% load static %}
+{% block title %}WGC | Pricing{% endblock %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Pricing</h1>
+  <p class="lead">Create your own customized price quote for the products offered by <br> Wannago Cloud based on your
+    BaaS, IaaS and DRaaS needs.</p>
+</div>
+
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">BaaS</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">DH 724<sup>*</sup><small class="text-muted">/ mo</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>+ Cloud Backup</li>
+          <li>+ Shared Backup</li>
+          <li>+ Backup on Premises</li>
+          <li>+ Personal Support</li>
+        </ul>
+        <a class="btn btn-outline-dark btn-lg btn-block" href="{% url 'pricing_baas' %}">BaaS Calculator</a>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">IaaS + DRaaS</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">DH 1219<sup>*</sup><small class="text-muted">/ mo</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>+ CPU per vCPU</li>
+          <li>+ RAM, HDD</li>
+          <li>+ Web-based Monitoring</li>
+          <li>+ Personal Support</li>
+        </ul>
+        <a class="btn btn-outline-dark btn-lg btn-block" href="{% url 'pricing_iaas' %}">IaaS + DRaaS Calculator</a>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Other requirements</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">DH X <small class="text-muted">/ mo</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Learn more about the pricing for</li>
+          <li>+ BaaS</li>
+          <li>+ DRaaS</li>
+          <li>+ IaaS</li>
+        </ul>
+        <a class="btn btn btn-lg btn-block btn-outline-dark" href="https://cp.wannagocloud.com/contact.php">Contact us</a>
+      </div>
+    </div>
+  </div>
+    <small class="text-muted"><sup>*</sup>Starting at these prices. These prices do not include NRC, BHAS & VAT.</small>
+{% endblock %}

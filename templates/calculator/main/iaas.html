@@ -1,0 +1,259 @@
+{% extends 'calculator/base.html' %}
+{% load static %}
+{% block title %}WGC | Pricing | IaaS{% endblock %}
+
+{% block content %}
+<link href="{% static '/css/grid.css' %}" rel="stylesheet">
+
+  <h1>IaaS</h1>
+  <p class="lead">Infrastructure as a Service.</p>
+<p>It is a <code>cloud computing service</code> where enterprises rent or lease servers
+  for compute and storage in the cloud.</p>
+
+  <h2 class="mt-4">Pricing Calculator</h2>
+  <p> Estimate the costs of WannaGo's Iaas + DRaaS products suited to your needs.<sup>*</sup></p>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col"><b>Requirement</b></div>
+    <div class="col-4 themed-grid-col"><b>Quantity</b></div>
+    <div class="col-4 themed-grid-col"><b>Price</b></div>
+  </div>
+  <form method="post">
+    {% csrf_token %}
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col">vCPU</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.vCPU}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="vCPU per month" name="vCPU" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.vCPU}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">RAM</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.RAM}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="RAM in GB" name="RAM" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.RAM}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">HDD</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.HDD}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="HDD in GB" name="HDD" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.HDD}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Bandwidth Shared</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.Bandwidth}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="Quantity in MB" name="Bandwidth" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.Bandwidth}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Public IP</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.IP}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="Quantity" name="IP" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.IP}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Windows SRV STD /2core</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.SRV}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="Instances per 2 Cores" name="SRV" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.SRV}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">RDP Cals</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.RDP}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="Quantity" name="RDP" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.RDP}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">SQL 2017 STD /2Core</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.STD_2Core}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="Instances per 2 Cores" name="STD_2Core" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.STD_2Core}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">SQL 2017 STD/ User Lic</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.User}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="Instances per User License" name="User" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.User}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Capture Client</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.Capture}}
+        {% else %}
+        <input type="number" id="mb" class="form-control" placeholder="Capture Client per AV" name="Capture" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.Capture}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Web Based Monitoring/Health</div>
+    <div class="col-4 themed-grid-col">
+        {% if values %}
+        {{values.Health}}
+         {% else %}
+        <input type="number" id="mb" class="form-control" placeholder="Quantity" name="Health" required autofocus>
+        {% endif %}
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.Health}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+
+  {% if pricing %}
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">BHAS</div>
+    <div class="col-4 themed-grid-col">22%</div>
+    <div class="col-4 themed-grid-col">AED {{pricing.bhas}}/mo</div>
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Non-Recurring Cost</div>
+    <div class="col-4 themed-grid-col">Fixed Cost</div>
+    <div class="col-4 themed-grid-col">AED 2999</div>
+  </div>
+        <hr>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col"></div>
+    <div class="col-4 themed-grid-col">
+      <b>Base price per month without NRC</b>
+    </div>
+    <div class="col-4 themed-grid-col"><b>AED {{pricing.mrc}}/mo</b></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col"></div>
+    <div class="col-4 themed-grid-col">
+      <b>Pricing for 12 months with NRC</b>
+    </div>
+    <div class="col-4 themed-grid-col"><b>AED {{pricing.total_1}}</b></div>
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col"></div>
+    <div class="col-4 themed-grid-col">
+      <b>Pricing for 24 months with NRC</b>
+    </div>
+      <div class="col-4 themed-grid-col"><b>AED {{pricing.total_2}}</b></div>
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col"></div>
+    <div class="col-4 themed-grid-col">
+      <b>Pricing for 36 months with NRC</b>
+    </div>
+      <div class="col-4 themed-grid-col"><b>AED {{pricing.total_3}}</b></div>
+  </div>
+   {% endif %}
+    <div class="row mb-3">
+      <div class="col-6">
+     <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Calculate</button>
+   </div>
+    <div class="col-6">
+     <input type="submit" class="btn btn-outline-danger btn-lg btn-block" value="Clear" name="clear">
+   </div>
+    </div>
+  </form>
+<small class="text-muted"><sup>*</sup>Prices may differ by <1%. VAT (5%) not included in calculated prices.</small>
+{% endblock %}

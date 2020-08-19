@@ -1,0 +1,44 @@
+{% extends 'register/base.html' %}
+{% load static %}
+{% block title %}WGC | Log In{% endblock %}
+
+{% block content %}
+<form class="form-signin" method="post">
+    {% csrf_token %}
+    <div class="text-center mb-4">
+        <img class="mb-4" src="{% static '/images/logo/logo.png' %}" alt="" width="200" height="50">
+        <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+        <p>Learn more about our product
+            <code>pricing</code>.<br>
+             For queries, contact
+            <a href="mailto:wgcsales@wannagocloud.com">wgcsales@wannagocloud.com</a>
+        </p>
+    </div>
+
+    <div class="form-label-group">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="username"required autofocus>
+        <label for="inputEmail">Email address</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+        <label for="inputPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3" >
+    <label>
+      <input type="checkbox" value="remember-me" name="remember_me"> Remember me
+    </label>
+    </div>
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <button class="btn btn-lg btn-dark btn-block" type="submit">Sign In</button>
+    <div>
+        <small class="form-text text-muted"> Don't have an account? <a href="{% url 'signup' %}">Sign up</a>.</small>
+    </div>
+      <p class="mt-5 mb-3 text-muted text-center">Wannago Cloud</p>
+</form>
+{% endblock %}

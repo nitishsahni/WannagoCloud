@@ -1,0 +1,116 @@
+{% extends 'calculator/base.html' %}
+{% load static %}
+{% block title %}WGC | Pricing | BaaS{% endblock %}
+{% block content %}
+  <link href="{% static '/css/grid.css' %}" rel="stylesheet">
+
+  <h1>BaaS</h1>
+  <p class="lead">Backup as a Service.</p>
+<p>It is a method of <code>offsite data storage</code> in which files, folders, or the entire contents of a
+    hard drive are regularly backed up by a service vendor to a remote secure cloud-based data
+    repository over a network connection.</p>
+
+  <h2 class="mt-4">Pricing Calculator</h2>
+  <p> Estimate the costs of WannaGo's BaaS products suited to your needs.<sup>*</sup></p>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col"><b>Requirement</b></div>
+    <div class="col-4 themed-grid-col"><b>Quantity</b></div>
+    <div class="col-4 themed-grid-col"><b>Price</b></div>
+  </div>
+  <form method="post">
+    {% csrf_token %}
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Backup On Cloud in TB</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.cbq}}
+        {% else %}
+        <input type="number" id="tb" class="form-control" placeholder="Quantity in TB" name="backup_tb" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.cloud_backup_price}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Bandwidth Shared in MB</div>
+    <div class="col-4 themed-grid-col">
+      <div class="form-label-group">
+        {% if values %}
+        {{values.bsq}}
+        {% else %}
+        <input type="number" id="mb" class="form-control" placeholder="Quantity in MB" name="bandwidth_mb" required autofocus>
+        {% endif %}
+    </div>
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.bandwidth_shared_price}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Backup On Premises</div>
+    <div class="col-4 themed-grid-col">
+        {% if values %}
+        {{values.riserva.name}}
+         {% else %}
+      <select class="form-control" name="riserva">
+        {% for r in baas %}
+        <option value="{{r.id}}">{{r.name}}</option>
+        {% endfor %}
+      </select>
+        {% endif %}
+    </div>
+    {% if pricing %}
+    <div class="col-4 themed-grid-col">AED {{pricing.riserva}}/mo</div>
+    {% else %}
+    <div class="col-4 themed-grid-col">-</div>
+    {% endif %}
+  </div>
+  {% if pricing %}
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col">Non-Recurring Cost</div>
+    <div class="col-4 themed-grid-col">
+      Fixed Cost
+    </div>
+    <div class="col-4 themed-grid-col">AED 1999</div>
+  </div>
+       <hr>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col"></div>
+    <div class="col-4 themed-grid-col">
+      <b>Base price per month without NRC</b>
+    </div>
+    <div class="col-4 themed-grid-col"><b>AED {{pricing.total_per_month}}/mo</b></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-4 themed-grid-col"></div>
+    <div class="col-4 themed-grid-col">
+      <b>Price for 12 months with NRC</b>
+    </div>
+    <div class="col-4 themed-grid-col"><b>AED {{pricing.total_12}}</b></div>
+  </div>
+    <div class="row mb-3">
+    <div class="col-4 themed-grid-col"></div>
+    <div class="col-4 themed-grid-col">
+      <b>Price for 36 months with NRC</b>
+    </div>
+      <div class="col-4 themed-grid-col"><b>AED {{pricing.total_36}}</b></div>
+  </div>
+   {% endif %}
+    <div class="row mb-3">
+      <div class="col-6">
+     <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Calculate</button>
+   </div>
+    <div class="col-6">
+     <input type="submit" class="btn btn-outline-danger btn-lg btn-block" value="Clear" name="clear">
+   </div>
+    </div>
+  </form>
+<small class="text-muted"><sup>*</sup>Prices may differ by <1%. VAT (5%) not included in calculated prices.</small>
+{% endblock %}

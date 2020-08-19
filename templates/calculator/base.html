@@ -1,0 +1,91 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static '/css/bootstrap-4.4.1.css' %}" rel="stylesheet">
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static '/css/pricing.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <img class="my-0 mr-md-auto" src="{% static '/images/logo/logo.png' %}" alt="" width="200" height="50">
+
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="https://cp.wannagocloud.com/index.php">Enterprise</a>
+    <a class="p-2 text-dark" href="https://cp.wannagocloud.com/contact.php">Support</a>
+    <a class="p-2 text-dark" href="{% url 'pricing_index' %}">Pricing</a>
+  </nav>
+  {% if request.user.is_authenticated %}
+  <a class="btn btn-outline-danger" href="{% url 'logout' %}">Log Out</a>
+  {% else %}
+  <a class="btn btn-outline-dark" href="{% url 'signup' %}">Sign Up</a>
+  {% endif %}
+</div>
+
+
+<div class="container">
+  {% block content %}
+  {% endblock %}
+  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="mb-2" src="{% static '/images/logo/logo.png' %}" alt="" width="160" height="40">
+      </div>
+      <div class="col-6 col-md">
+        <h5>Links</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="{% url 'pricing_index' %}">Pricing</a></li>
+          <li><a class="text-muted" href="{% url 'pricing_baas' %}">BaaS Calculator</a></li>
+          <li><a class="text-muted" href="{% url 'pricing_iaas' %}">IaaS Calculator</a></li>
+          <li><a class="text-muted" href="https://www.wannagocloud.com">Wannago Cloud</a></li>
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/submitticket.php?step=2&deptid=1">Submit ticket</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Products</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/hostus.php">HostUS</a></li>
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/copia.php">Copia</a></li>
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/controllo--gateway.php">Controllo</a></li>
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/securro-standard.php">Securro</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/aboutus.php">About Us</a></li>
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/contact.php">Contact</a></li>
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/index.php?rp=/knowledgebase">Knowledgebase</a></li>
+          <li><a class="text-muted" href="https://cp.wannagocloud.com/terms-of-service.php">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

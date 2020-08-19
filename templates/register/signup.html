@@ -1,0 +1,45 @@
+{% extends 'register/base.html' %}
+{% load static %}
+{% block title %}WGC | Sign Up{% endblock %}
+{% block content %}
+<form class="form-signin" method="post">
+    {% csrf_token %}
+    <div class="text-center mb-4">
+        <img class="mb-4" src="{% static '/images/logo/logo.png' %}" alt="" width="280" height="70">
+        <h1 class="h3 mb-3 font-weight-normal">Register Your Company</h1>
+        <p>Become a <code>partner</code> with WannaGoCloud. <br>
+             For queries, contact
+            <a href="mailto:wgcsales@wannagocloud.com">wgcsales@wannagocloud.com</a>
+        </p>
+    </div>
+    <div class="form-label-group">
+        <input type="text" id="inputCompanyName" class="form-control" placeholder="Company Name" name="company_name" required autofocus>
+        <label for="inputEmail">Company Name</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="text" id="inputContactName" class="form-control" placeholder="Contact Name" name="contact_name" required autofocus>
+        <label for="inputEmail">Contact Name</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+        <label for="inputEmail">Email address</label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="inputPassword1" class="form-control" placeholder="Password" name="password1" required autofocus>
+        <label for="inputEmail">Password</label>
+    </div>
+        {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <button class="btn btn-lg btn-dark btn-block" type="submit">Sign Up</button>
+    <div>
+        <small class="form-text text-muted"> Already have an account? <a href="{% url 'login' %}">Log in</a>.</small>
+    </div>
+      <p class="mt-5 mb-3 text-muted text-center">Wannago Cloud</p>
+</form>
+{% endblock %}
