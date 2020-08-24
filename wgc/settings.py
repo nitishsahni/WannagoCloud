@@ -24,7 +24,7 @@ SECRET_KEY = 'u!mir4jxvl)f22r&%i^mcwxak99n^phhx(7)v#_(-6(@i99ab3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['104.248.124.154', ]
+ALLOWED_HOSTS = ['104.248.124.154', 'wgc.nitsahn.in', 'www.nitsahn.in', 'nitsahn.in']
 
 # Application definition
 
