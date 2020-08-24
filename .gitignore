@@ -4,3 +4,6 @@
 # PYTHON
 *.pyc
 *.pyo
+
+db.sqlite3
+wgc/settings.py

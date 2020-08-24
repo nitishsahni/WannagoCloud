@@ -13,4 +13,4 @@ def get_names(contact_name):
         names = contact_name.split(' ')
         return names[0], names[1]
     else:
-        return contact_name, None
+        return contact_name, " "
