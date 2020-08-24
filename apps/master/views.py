@@ -63,4 +63,5 @@ class SignupView(View):
             messages.error(request, partner_form.errors)
             return redirect('signup')
         save_both(user, partner, first_name, last_name, email)
-        return user.login_redirect()
+        messages.success(request, "Thanks for registering. Please login.")
+        return redirect('login')
