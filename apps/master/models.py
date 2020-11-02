@@ -27,3 +27,11 @@ class Partner(models.Model):
 
     def __str__(self):
         return self.company_name
+
+
+class Customer(models.Model):
+    customer_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    partner = models.ForeignKey(Partner, on_delete=models.SET_NULL, null=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)

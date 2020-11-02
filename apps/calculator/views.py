@@ -1,9 +1,14 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views import View
 
-from ..products.models import *
+import pandas as pd
 
+from ..master.models import Customer
+from ..products.models import *
+from ..emails.models import EmailTemplate
+from .models import IaaS_DRaaS_Form, Riserva_Form
 
 # Create your views here.
 def home(request):
@@ -81,4 +86,25 @@ class IaaS_View(View):
                             total_2=pricing['mrc']*24 + 2999,
                             total_3=pricing['mrc']*36 + 2999))
         self.context = { 'pricing': pricing, 'values': values }
+        self.pdf_generation(request)
         return render(request, self.template_name, context=self.context)
+
+    def pdf_generation(self, request):
+        self.context['values'] = {k: v[0] if len(v) == 1 else v for k, v in self.context['values'].lists()}
+        # customer_name = request.POST.get('customer_name')
+        # customer_email = request.POST.get('customer_email')
+        # customer = Customer(customer_name, customer_email, request.user.Partner)
+        # customer.save()
+        # object = IaaS_DRaaS_Form(partner=request.user.Partner,
+        #                          customer=Customer(customer, customer_email),
+        #                          requested_items = self.context['values'])
+        # object.save()
+        self.context['values'] = {k: v[0] if len(v) == 1 else v for k, v in self.context['values'].lists()}
+        df = pd.DataFrame(self.context)
+        print(df)
+        #print(final_dict)
+
+
+
+
+
